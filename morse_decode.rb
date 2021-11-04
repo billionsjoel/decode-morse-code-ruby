@@ -38,7 +38,11 @@ MORSE_CODE = {
 }.freeze
 
 def decode_char(str)
-  MORSE_CODE[str]
+  if MORSE_CODE.key?(str)
+    MORSE_CODE[str]
+  else
+    ''
+  end
 end
 
 def decode_word(str)
@@ -49,5 +53,15 @@ def decode_word(str)
   arr.join
 end
 
+def decode(str)
+  word = ''
+  str.strip.tr('/', ' ').split('   ').each do |n|
+    word += "#{decode_word(n)} "
+  end
+  word
+end
 puts decode_char('.-')
 puts decode_word('-- -.--')
+puts decode('-- -.--   -. .- -- .')
+puts decode("      .-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-. / .-. ..- -... .. . ...
+  ")
