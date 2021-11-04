@@ -41,6 +41,13 @@ def decode_char(str)
   $morse_code[str]
 end
 
-
+def decode_word(str)
+  arr = []
+  str.split.each {
+    |n| arr.push($morse_code[n])
+  }
+  return arr.join("")
+end
 
 puts decode_char(".-")
+puts decode_word("-- -.--")
